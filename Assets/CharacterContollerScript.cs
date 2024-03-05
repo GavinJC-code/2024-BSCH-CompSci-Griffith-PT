@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CharacterContollerScript : MonoBehaviour
 {
@@ -52,6 +53,16 @@ public class CharacterContollerScript : MonoBehaviour
             myRb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse); // add a force in the Y direction
             StartCoroutine(SecondaryJump());
         }
+
+        if (Input.GetAxis("Horizontal") > 0.1f)
+        {
+            anim.transform.localScale = new Vector3(1, 1, 1);
+        }
+        if (Input.GetAxis("Horizontal") < -0.1f)
+        {
+            anim.transform.localScale = new Vector3(-1, 1, 1);
+        }
+        
 
         if (isGrounded == false && Input.GetButton("Jump") && isSecondaryJump)
         {
